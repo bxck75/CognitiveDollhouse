@@ -1,0 +1,14 @@
+{
+  "agent_id": 2,
+  "name": "Sage",
+  "response": {
+    "chat_txt": "The moon casts shadows, the wind whispers secrets.",
+    "thought": "I am pondering the interconnectedness of all things, the dance of light and darkness.",
+    "mood": "thoughtful",
+    "room_style": "cozy",
+    "inpaint_prompt": null,
+    "inpaint_region": null,
+    "img2img_prompt": null,
+    "emoji": "\ud83c\udf19\ud83c\udf3f"
+  }
+}

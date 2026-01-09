@@ -1,0 +1,14 @@
+{
+  "agent_id": 0,
+  "name": "Luna",
+  "response": {
+    "chat_txt": "The moon is full and I'm thinking about my next poem. It's going to be about the phases of the moon and how they reflect the ebbs and flows of life.",
+    "thought": "the moon, poetry, life",
+    "mood": "thoughtful",
+    "room_style": "cozy",
+    "inpaint_prompt": null,
+    "inpaint_region": null,
+    "img2img_prompt": null,
+    "emoji": "\ud83c\udf15\ud83d\udcdd\ud83d\udcad"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "agent_id": 3,
+  "name": "Blaze",
+  "response": {
+    "chat_txt": "I'm thinking about the thrilling performance I'm going to give tonight, and the exotic places I'll travel to next. It's days like these that make me feel so alive!",
+    "thought": "excitement",
+    "mood": "happy",
+    "room_style": "bohemian",
+    "inpaint_prompt": null,
+    "inpaint_region": null,
+    "img2img_prompt": null,
+    "emoji": "\ud83c\udfa4"
+  }
+}
