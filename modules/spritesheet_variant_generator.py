@@ -228,7 +228,8 @@ class SpriteSheetProcessor:
         generated_images = []
         
         rp(f"[cyan]Generating {num_variants} variants with prompt: '{prompt}'[/cyan]")
-        
+        from birefnet import BackgroundRemover
+        remover = BackgroundRemover()
         for i in range(num_variants):
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
@@ -250,7 +251,14 @@ class SpriteSheetProcessor:
                 ).images[0]
                 
                 output_path = os.path.join(output_dir, f"variant_{i:02d}.png")
+                # save image
                 image.save(output_path)
+                # remove bg
+
+                remover.remove_background(
+                    image_path=output_path,
+                    output_path=output_path.replace('.png','_transparent.png')
+                )
                 generated_images.append(image)
                 
                 rp(f"[green]✓ Generated variant {i+1}/{num_variants}[/green]")
@@ -332,23 +340,28 @@ if __name__ == "__main__":
     # Configuration
 
     # t2i models
-    xenogasm_model="/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/models/sd15_models/uberRealisticPornMerge_v23Final.safetensors"
-    dreamshaper8="/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/models/sd15_models/dreamshaper_8.safetensors"
-
-
-    root_folder = "/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend"
+    root_folder = "/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project"
     #remote_checkpoint = "lllyasviel/control_v11p_sd15_openpose"
+    
+    uberrealistic_model= f"{root_folder}/models/uberRealisticPornMerge_v23Final.safetensors"
+    xenogasm_model= f"{root_folder}/models/uberRealisticPornMerge_v23Final.safetensors"
+    dreamshaper8= f"{root_folder}/models/dreamshaper_8.safetensors"
+    
+    # current model set to 
+    MODEL_CHECKPOINT = uberrealistic_model
 
+    NUM_VARIANTS = 5
     UPSCALE_FACTOR = 2
-    CHECKPOINT_POSE =  f"{root_folder}/models/controlnets/control_v11p_sd15_openpose_fp16.safetensors"
-    UPSCALER_PATH = '/media/codemonkeyxl/DATA2/new_comfyui/ComfyUI/models/upscale_models/RealESRGAN_x2plus.pth'
-    INPUT_IMAGE = '/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/Screenshot from 2026-01-09 08-45-11.png'
-    PROMPT = "a walking female, naked, huge breasts, short hair"
-    SEED = 666875646756233
+    CHECKPOINT_POSE =  f"{root_folder}/models/control_v11p_sd15_openpose_fp16.safetensors"
+    UPSCALER_PATH = f'{root_folder}/models/RealESRGAN_x{UPSCALE_FACTOR}plus.pth'
+    #INPUT_IMAGE = f'{root_folder}/visuals/characters/ladysprite.png'
+    INPUT_IMAGE = f"{root_folder}/visuals/characters/video_sprites/spritesheet2.png"
+    PROMPT = "a walking obese female, naked, giant breasts, giant anus, rainbow mohawk"
+    SEED = 66687435646756233
 
-    spite_variant_prompt=f"a 2D character spritesheet with of {PROMPT}"
-    variant_negative_prompt = "shadows, floor, background, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry"
-    MODEL_CHECKPOINT = xenogasm_model
+    spite_variant_prompt=f"a 2D character spritesheet of {PROMPT}"
+    variant_negative_prompt = "shadows, floor, background, tail, cape, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry"
+    
 
 
     # Initialize processor
@@ -364,9 +377,9 @@ if __name__ == "__main__":
     results = processor.process_sprite_sheet(
         input_image_path=INPUT_IMAGE,
         prompt=spite_variant_prompt,
-        num_variants=1,
+        num_variants=NUM_VARIANTS,
         output_pose_path=INPUT_IMAGE.replace('.png', '_pose.png'),
-        output_dir="./sprite_variants",
+        output_dir="visuals/characters/spritesheet_variants",
         seed=SEED,
         num_inference_steps=32,
         guidance_scale=5.5,

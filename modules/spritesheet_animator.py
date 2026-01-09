@@ -106,19 +106,19 @@ if __name__ == "__main__":
     pygame.init()
     
     # Screen setup
-    SCREEN_WIDTH = 400
-    SCREEN_HEIGHT = 600
+    SCREEN_WIDTH = 600
+    SCREEN_HEIGHT = 900
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Spritesheet Animation")
     clock = pygame.time.Clock()
     
     # Create animator (adjust path and frame dimensions to match your spritesheet)
     animator = SpritesheetAnimator(
-        spritesheet_path="/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/ladysprite_transparent.png",  # Change to your spritesheet path
-        frame_width=240,  # Adjust to your frame width
-        frame_height=456,  # Adjust to your frame height
-        total_frames=3,  # Number of frames in the spritesheet
-        fps=7  # Animation speed
+        spritesheet_path="visuals/characters/video_sprites/spritesheet2L.png",  # Change to your spritesheet path
+        frame_width=308,  # Adjust to your frame width
+        frame_height=454,  # Adjust to your frame height
+        total_frames=32,  # Number of frames in the spritesheet
+        fps=5  # Animation speed
     )
     
     # Character position

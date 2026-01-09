@@ -132,6 +132,6 @@ if __name__ == "__main__":
     # Single image
     remover = BackgroundRemover()
     image_with_transparency, mask = remover.remove_background(
-        image_path='/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/ladysprite.png',
-        output_path='/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/ladysprite_transparent.png'
+        image_path='/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/femalesprite.png',
+        output_path='/media/codemonkeyxl/B500/coding_folder/visual_chatbot/backend/160_poses_grab/dollhouse_project/visuals/characters/spritesheet_variants/femalesprite_transparent.png'
     )

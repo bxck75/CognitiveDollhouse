@@ -141,7 +141,12 @@ diffusers           # Stable Diffusion pipelines
 llama-cpp-python    # Local LLM inference
 Pillow              # Image processing
 numpy               # Numerical operations
+transformers
+diffusers   
+peft
+accelerate      
 safetensors         # Model loading
+mediapipe==0.10.13  # Pose estimation
 ```
 
 ---
